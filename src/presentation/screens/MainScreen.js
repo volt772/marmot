@@ -137,6 +137,7 @@ export default function MainScreen({ getWeather }) {
             enabled={stadium !== null && !loading}
             tintColor={colors.content}
             colors={[colors.content]}
+            progressBackgroundColor={colors.background}
           />
         }
       >
@@ -222,6 +223,7 @@ const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     justifyContent: "center",
+    paddingTop: 8,
     paddingVertical: 48,
   },
   message: {

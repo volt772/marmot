@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
   },
   description: {
-    fontSize: 22,
+    fontSize: 30,
     fontWeight: "500",
   },
   temperature: {
     marginTop: 16,
-    fontSize: 80,
+    fontSize: 50,
     fontWeight: "bold",
   },
   stadiumName: {

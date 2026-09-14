@@ -27,7 +27,7 @@ export default function MyTopBar({ onInfoClick, colors }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 56,
+    height: 50,
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",

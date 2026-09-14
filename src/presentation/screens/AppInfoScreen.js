@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   Animated,
+  BackHandler,
   Dimensions,
   Image,
   Pressable,
@@ -28,7 +29,7 @@ export default function AppInfoScreen({ onBack }) {
     }).start();
   }, [translateX]);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     Animated.timing(translateX, {
       toValue: SCREEN_WIDTH,
       duration: 250,
@@ -36,7 +37,22 @@ export default function AppInfoScreen({ onBack }) {
     }).start(() => {
       onBack();
     });
-  };
+  }, [translateX, onBack]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        handleBack();
+
+        return true;
+      },
+    );
+
+    return () => {
+      backHandler.remove();
+    };
+  }, [handleBack]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
