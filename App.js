@@ -1,20 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { getWeatherByStadium } from "./src/data/repositories/weatherRepository";
+import { createGetWeather } from "./src/domain/usecases/getWeather";
+import MainScreen from "./src/presentation/screens/MainScreen";
+
+const getWeather = createGetWeather(getWeatherByStadium);
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <MainScreen getWeather={getWeather} />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
