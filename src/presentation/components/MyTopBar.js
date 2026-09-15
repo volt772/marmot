@@ -6,6 +6,7 @@ export default function MyTopBar({ onInfoClick, colors }) {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Pressable
         style={styles.button}
+        android_ripple={{ color: `${colors.content}33`, foreground: true }}
         onPress={onInfoClick}
         accessibilityRole="button"
         accessibilityLabel="앱 안내"
@@ -36,6 +37,8 @@ const styles = StyleSheet.create({
   button: {
     width: 48,
     height: 48,
+    borderRadius: 24,
+    overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
   },

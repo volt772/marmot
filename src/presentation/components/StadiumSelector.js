@@ -29,6 +29,7 @@ export default function StadiumSelector({ stadium, onSelect, colors }) {
     <>
       <Pressable
         style={[styles.button, { borderColor: colors.content }]}
+        android_ripple={{ color: `${colors.content}33`, foreground: true }}
         onPress={openSelector}
         accessibilityRole="button"
       >
@@ -52,6 +53,7 @@ export default function StadiumSelector({ stadium, onSelect, colors }) {
                 <Pressable
                   key={item}
                   style={[styles.tab, league === item && styles.selectedTab]}
+                  android_ripple={{ color: "#0D141C26", foreground: true }}
                   onPress={() => setLeague(item)}
                   accessibilityRole="button"
                   accessibilityState={{ selected: league === item }}
@@ -78,6 +80,7 @@ export default function StadiumSelector({ stadium, onSelect, colors }) {
                 return (
                   <Pressable
                     style={[styles.stadium, selected && styles.selectedStadium]}
+                    android_ripple={{ color: "#0D141C26", foreground: true }}
                     onPress={() => selectStadium(item)}
                     accessibilityRole="button"
                     accessibilityState={{ selected }}
@@ -97,6 +100,7 @@ export default function StadiumSelector({ stadium, onSelect, colors }) {
 
             <Pressable
               style={styles.closeButton}
+              android_ripple={{ color: "#0D141C26", foreground: true }}
               onPress={() => setVisible(false)}
               accessibilityRole="button"
             >
@@ -111,6 +115,7 @@ export default function StadiumSelector({ stadium, onSelect, colors }) {
 
 const styles = StyleSheet.create({
   button: {
+    overflow: "hidden",
     alignSelf: "center",
     borderWidth: 1,
     borderRadius: 20,
@@ -145,6 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   tab: {
+    overflow: "hidden",
     flex: 1,
     alignItems: "center",
     paddingVertical: 12,
@@ -166,6 +172,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   stadium: {
+    overflow: "hidden",
     paddingHorizontal: 12,
     paddingVertical: 16,
     borderRadius: 8,
@@ -181,6 +188,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   closeButton: {
+    overflow: "hidden",
     alignItems: "center",
     paddingVertical: 12,
     marginTop: 12,
