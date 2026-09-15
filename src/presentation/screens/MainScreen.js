@@ -10,6 +10,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   loadAppInfoConfirmed,
   loadStadiumCode,
@@ -25,6 +26,9 @@ import StadiumSelector from "../components/StadiumSelector";
 import useWeather from "../hooks/useWeather";
 import { getWeatherColors } from "../theme/weatherColors";
 import AppInfoScreen from "./AppInfoScreen";
+
+// 상단 안전 영역(status bar/노치) 아래에서 TopBar까지의 간격.
+const TOP_BAR_GAP = 8;
 
 export default function MainScreen({ getWeather }) {
   const [stadium, setStadium] = useState(null);
@@ -128,7 +132,15 @@ export default function MainScreen({ getWeather }) {
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <StatusBar style="auto" />
 
+      <SafeAreaView edges={["top", "left", "right"]} style={styles.header}>
+        <MyTopBar
+          onInfoClick={() => setShowAppInfoScreen(true)}
+          colors={colors}
+        />
+      </SafeAreaView>
+
       <ScrollView
+        style={styles.scroll}
         contentContainerStyle={styles.content}
         refreshControl={
           <RefreshControl
@@ -141,11 +153,6 @@ export default function MainScreen({ getWeather }) {
           />
         }
       >
-        <MyTopBar
-          onInfoClick={() => setShowAppInfoScreen(true)}
-          colors={colors}
-        />
-
         {stadium === null || loading ? (
           <View style={styles.message}>
             <ActivityIndicator size="large" color={colors.content} />
@@ -218,6 +225,12 @@ export default function MainScreen({ getWeather }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  header: {
+    paddingTop: TOP_BAR_GAP,
+  },
+  scroll: {
     flex: 1,
   },
   content: {
