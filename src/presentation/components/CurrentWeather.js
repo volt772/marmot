@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     paddingHorizontal: 24,
+    paddingTop: 0,
     paddingVertical: 40,
   },
   description: {
